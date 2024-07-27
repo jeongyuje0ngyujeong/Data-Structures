@@ -84,9 +84,43 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void moveOddItemsToBack(LinkedList *ll)
-{
-	/* add your code here */
+void moveOddItemsToBack(LinkedList *ll){
+	LinkedList odd;
+	ListNode *pre, *cur, *oddNode;
+
+	odd.head = NULL;
+	odd.size = 0;
+	pre = NULL;
+
+	int oddIdx = 0;
+	int llIdx = 0;
+	int size = ll->size;
+	cur = ll->head;
+
+	for (int i = 0; i < size; i++) {
+		if (cur->item % 2 != 0) {
+			insertNode(&odd, oddIdx, cur->item);
+			cur = cur->next;
+			removeNode(ll, llIdx);
+			oddIdx++;
+			continue;
+
+		} else {
+			llIdx++;
+			pre = cur;
+			cur = cur->next;
+			continue;
+
+		}
+	}
+
+	if (pre == NULL) {
+		ll->head = odd.head;
+		return;
+	}
+	
+	pre->next = odd.head;
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
