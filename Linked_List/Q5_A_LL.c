@@ -100,9 +100,30 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
-{
-	/* add your code here */
+void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList) {
+	ListNode *cur;
+
+	int size = ll->size;
+	int center = 0;
+
+	if (size % 2 == 0) {
+		center = size / 2;
+
+	} else {
+		center = (size / 2) + 1;
+	}
+	
+	cur = ll->head;
+	for (int i = 0; i < size; i++) {
+		if (center <= i) {
+			insertNode(resultBackList, resultBackList->size, cur->item);
+			cur = cur->next;
+			continue;
+		}
+		
+		insertNode(resultFrontList, resultFrontList->size, cur->item);
+		cur = cur->next;
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
