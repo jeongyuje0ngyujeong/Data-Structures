@@ -114,14 +114,39 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void createQueueFromLinkedList(LinkedList *ll, Queue *q)
-{
-	/* add your code here */
+void createQueueFromLinkedList(LinkedList *ll, Queue *q) {
+	ListNode *cur;
+
+	if (!isEmptyQueue(q)) {	
+		removeAllItemsFromQueue(q);
+	}
+	
+	cur = ll->head;
+	for (int i = 0; i < ll->size; i++) {
+		enqueue(q, cur->item);
+		cur = cur->next;
+	}
+	return;
 }
 
-void removeOddValues(Queue *q)
-{
-	/* add your code here */
+void removeOddValues(Queue *q) {
+	ListNode *cur;
+	
+	int size = q->ll.size;
+	cur = q->ll.head;
+
+	for (int i = 0; i < size; i++) {
+		if (cur->item % 2 == 0) {
+			int even = cur->item;
+			dequeue(q);
+			enqueue(q, even);
+			cur = q->ll.head;
+			continue;
+		}
+
+		dequeue(q);
+		cur = q->ll.head;
+	}	
 }
 
 //////////////////////////////////////////////////////////////////////////////////
