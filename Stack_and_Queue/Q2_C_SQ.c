@@ -111,14 +111,50 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void createStackFromLinkedList(LinkedList *ll, Stack *s)
-{
-    /* add your code here */
+void createStackFromLinkedList(LinkedList *ll, Stack *s){
+	ListNode *cur, *curOdd;
+
+    if (!isEmptyStack(s)) {
+		removeAllItemsFromStack(s);
+	}
+
+	cur = ll->head;
+	for (int i = 0; i < ll->size; i++) {	
+		push(s, cur->item);
+		cur = cur->next;
+	}
+	return;
 }
 
-void removeEvenValues(Stack *s)
-{
-	/* add your code here */
+void removeEvenValues(Stack *s) {
+	ListNode *curOdd;
+	Stack odd;
+
+	odd.ll.head = NULL;
+	odd.ll.size = 0;
+
+	int size = s->ll.size;
+
+	for (int i = 0; i < size; i++) {
+		int item = pop(s);
+
+		if (item % 2 != 0) {
+			push(&(odd), item);
+			continue;
+		}
+	}
+
+	if (isEmptyStack(&(odd))) {
+		return;
+	}
+
+	size = odd.ll.size;
+	curOdd = odd.ll.head;
+	for (int i = 0; i < size; i++) {
+		push(s, pop(&(odd)));
+	}
+
+	return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
