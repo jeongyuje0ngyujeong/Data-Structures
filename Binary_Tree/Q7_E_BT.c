@@ -100,9 +100,18 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-int smallestValue(BTNode *node)
-{
-	/* add your code here */
+int smallestValue(BTNode *node) {
+	if (node == NULL) return 2147483647;
+
+    int checkLeft = smallestValue(node->left); 
+    int checkRight = smallestValue(node->right);
+
+    checkLeft = node->item < checkLeft ? node->item : checkLeft;
+    checkRight = node->item < checkRight ? node->item : checkRight;
+
+    if (checkLeft < checkRight) return checkLeft;
+    else return checkRight;
+    
 }
 
 //////////////////////////////////////////////////////////////////////////////////
