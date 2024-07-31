@@ -89,8 +89,7 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void postOrderIterativeS2(BSTNode *root)
-{
+void postOrderIterativeS2(BSTNode *root){
 	 /* add your code here */
 }
 

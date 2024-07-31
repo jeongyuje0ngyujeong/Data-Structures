@@ -88,9 +88,30 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void inOrderTraversal(BSTNode *root)
-{
-	 /* add your code here */
+void inOrderTraversal(BSTNode *root){
+	BSTNode *cur;
+	Stack s;
+
+	if (root->left != NULL && root->right != NULL) return;
+	
+	s.top = NULL;
+	cur = root;
+	
+	while (cur != NULL) {
+		push(&s, cur);
+		cur = cur->left;
+	}
+	
+	//root의 right 탐색 시 left node 탐색이 안되고 있음.
+	while (!isEmpty(&s)) {
+		cur = pop(&s);
+		printf("%d ", cur->item);
+		if (cur->right != NULL) {
+			push(&s, cur->right);
+		}	
+	}
+	
+	return;
 }
 
 ///////////////////////////////////////////////////////////////////////////////
