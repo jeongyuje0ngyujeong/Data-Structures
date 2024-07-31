@@ -107,7 +107,7 @@ int hasGreatGrandchild(BTNode *node) {
     int rightDepth = hasGreatGrandchild(node->right) + 1;
 
     if (leftDepth >= 3) printf("%d\n", node->item);
-    else if (rightDepth >= 3) printf("%d", node->item);
+    else if (rightDepth >= 3) printf("%d\n", node->item);
 
     if (leftDepth < rightDepth) return rightDepth;
     else return leftDepth;
