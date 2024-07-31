@@ -92,7 +92,7 @@ int main()
 //////////////////////////////////////////////////////////////////////////////////
 
 void levelOrderTraversal(BSTNode* root) {
-	BSTNode *cur, *left, *right;
+	BSTNode *cur;
 	Queue Queue;
 
 	if (root == NULL) return;
