@@ -40,7 +40,7 @@ void mirrorTree(BTNode *node);
 BTNode *createBTNode(int item);
 
 BTNode *createTree();
-void push( Stack *stack, BTNode *node);
+void push(Stack *stack, BTNode *node);
 BTNode* pop(Stack *stack);
 
 void printTree(BTNode *node);
@@ -103,9 +103,18 @@ int main()
 
 //////////////////////////////////////////////////////////////////////////////////
 
-void mirrorTree(BTNode *node)
-{
-	/* add your code here */
+void mirrorTree(BTNode *node) {
+	BTNode *temp;
+
+    if (node->left == NULL && node->right == NULL) {
+        return;
+    }
+    
+    temp = node->left;
+    node->left = node->right;
+    node->right = temp;
+    mirrorTree(node->left);
+    return;
 }
 
 //////////////////////////////////////////////////////////////////////////////////
